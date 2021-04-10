@@ -14,7 +14,15 @@ public/hot
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
-
+storage/app/.gitignore
+storage/app/public/.gitignore
+storage/debugbar/.gitignore
+storage/framework/.gitignore
+storage/framework/cache/.gitignore
+storage/framework/sessions/.gitignore
+storage/framework/testing/.gitignore
+storage/framework/views/.gitignore
+storage/logs/.gitignore
 storage/*
 .env
 Homestead.yaml
