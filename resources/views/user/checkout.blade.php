@@ -36,7 +36,7 @@
                <div class="check-pa">
                   <div class="card m-b-0">
                      <?php $showfirst="";?>
-                     @if(!Session::get('login_user')&&Session::get("orderstatus")==1)
+                     @if(!Session::get('login_user')&&$setting->order_status==1)
                      <div class="card-header collapsed" id="headingOneH" href="#collapseOneH" data-toggle="collapse">
                         <div class="checkbox-acco1">
                            <p>{{__('messages.returning_customer')}}</p>
@@ -45,7 +45,7 @@
                      </div>
                      <?php $showfirst="show";?>
                      @endif
-                     @if(Session::get('login_user')&&Session::get("orderstatus")==1)
+                     @if(Session::get('login_user')&&$setting->order_status==1)
                      <div class="card-header collapsed" id="headingOneH">
                         <div class="checkbox-acco1">
                            <p>{{Session::get('user_phone')}}</p>
@@ -81,13 +81,13 @@
                   </div>
                   <div class="card m-b-0">
                      <?php $showsec="";?>
-                     @if(Session::get('login_user')&&Session::get("orderstatus")==1)
+                     @if(Session::get('login_user')&&$setting->order_status==1)
                      <div class="card-header d-detail" id="headingTwoH" href="#collapseTwoH" data-toggle="collapse">
                         <h1>{{__('messages.DD')}}</h1>
                         <?php $showsec="show";?>
                      </div>
                      @endif
-                     @if(empty(Session::get('login_user'))&&Session::get("orderstatus")==1)
+                     @if(empty(Session::get('login_user'))&&$setting->order_status==1)
                      <div class="card-header d-detail" id="headingTwoH" >
                         <h1>{{__('messages.DD')}}</h1>
                      </div>
@@ -192,14 +192,14 @@
                         }
                         
                         ?>
-                     <p>{{Session::get("usercurrency")}}<span id="subtotal_order"><?php echo number_format(array_sum($totalamountarr), 2, '.', '');?></span></p>
+                     <p>{{$curreny}}<span id="subtotal_order"><?php echo number_format(array_sum($totalamountarr), 2, '.', '');?></span></p>
                   </div>
                </div>
                <input type="hidden" name="subtotalorder" id="subtotalorder" value="{{array_sum($totalamountarr)}}">
                <div class="cart-b-subtotal" id="dcorder" style="display: <?php echo $display;?>">
                   <div class="cart-bs-head">
                      <h4>{{__('messages.DC')}}</h4>
-                     <p>{{Session::get("usercurrency")}}<span id="delivery_charges_order">{{number_format($delivery_charges, 2, '.', '')}}</span></p>
+                     <p>{{$curreny}}<span id="delivery_charges_order">{{number_format($delivery_charges, 2, '.', '')}}</span></p>
                   </div>
                </div>
                <div class="cart-b-subtotal">
@@ -211,7 +211,7 @@
                           $charges=0;
                         }
                         ?>
-                     <p>{{Session::get("usercurrency")}}<span id="finaltotal_order"><?php $total=
+                     <p>{{$curreny}}<span id="finaltotal_order"><?php $total=
                         array_sum($totalamountarr)+$charges;?> {{number_format($total, 2, '.', '')}}</span></p>
                   </div>
                </div>
@@ -258,7 +258,7 @@
                </div>
                @if(Session::get('login_user'))
                <div id="orderplace1">
-                  <button type="button" onclick="orderplace()">
+                  <button type="button" id="cashbutton" onclick="orderplace()">
                   <span style="">{{__('messages.place_order')}}</span>
                   </button>
                </div>
@@ -277,13 +277,13 @@
                      <input type="hidden" name="charage_or" id="charage_or" required="" />
                      <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{Session::get('stripe_key')}}"
+                        data-key="{{$setting->stripe_key}}"
                         data-amount=""
                         data-id="stripid"
                         data-name="{{__('messages.site_name')}}"
                         data-label="{{__('messages.place_order')}}"
                         data-description=""
-                        data-image="{{Session::get('logo')}}"
+                        data-image="{{asset('public/upload/web/').'/'.$setting->logo}}"
                         data-locale="auto"></script>
                   </form>
                </div>

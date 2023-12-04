@@ -37,13 +37,12 @@
                         </div>
                      </div>
                      @endif
-                     <form action="{{url('updatekeydata')}}" method="post" novalidate="novalidate">
+                     <form action="{{url('updatekeydata')}}" method="post">
                         {{csrf_field()}}
                         <input type="hidden" name="key" value="{{$key}}"/>
                         <div class="form-group">
-                           <label for="cc-payment" class="control-label mb-1">{{$name}} {{__('messages.server_key')}}</label>
-                           <textarea id="serverkey" name="serverkey" type="text" class="form-control serverkey">{{$keyvalue}}
-                           </textarea>
+                           <label for="cc-payment" class="control-label mb-1">{{$name}} {{__('messages.server_key')}} <span style="color:red">*</span></label>
+                           <textarea id="serverkey" name="serverkey" type="text" class="form-control serverkey" required>{{$keyvalue}}</textarea>
                         </div>
                         <div>
                            @if(Session::get("demo")==0)

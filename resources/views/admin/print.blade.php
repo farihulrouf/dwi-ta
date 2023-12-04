@@ -8,7 +8,7 @@
     <body style="margin-top:25px">
         <div class="col-md-12" style="float:left;width:100%">
              <div class="col-md-6" style="float:left;">
-                 <img src="{{asset('burger/images/web-nav-logo.png')}}" style="width:100px;height:100px;" />
+                 <img src="{{asset('upload/web').'/'.$data['admin']->logo}}" style="width:100px;height:100px;" />
              </div>
              <div class="col-md-6" style="float:right">
                  <div><?=__('messages.site_name')?></div>
@@ -23,11 +23,12 @@
                      
                      <div><b id="username"><?=$data['orderdata']->name?></b></div>
                      <div id="ordertime"><?=$data['orderdata']->order_placed_date?></div>
+                     <div>{{$data['orderdata']->phone_no}}</div>
                      <div id="address" class="moreaddress"><?=$data['orderdata']->address?></div>
                      <div id="paymenttype"><?=__('messages.pay_type')?>:-<?=$data['orderdata']->payment_type?></div>
                      <div id="note"><?=__('messages.note')?>:-<?=$data['orderdata']->notes?></div>
                      <?php if($data['orderdata']->pickup_order_time!="null"){?>
-                     <div id="pickup_time"><?=date('Y-m-d h:i:s',$data['orderdata']->pickup_order_time);?></div>
+                     <div id="pickup_time"><?=date('Y-m-d h:i:s',strtotime($data['orderdata']->created_at));?></div>
                      <?php }?>
                   </div>
                   
@@ -101,7 +102,7 @@
                             <td></td>
                             <td></td>
                             <th><?=__('messages.subtotal')?></th>
-                            <td><?=$data['currency'].$total?></td>
+                            <td><?=$data['currency'].number_format($total, 2, '.', '')?></td>
                         </tr>
                         <tr>
                             <td></td>

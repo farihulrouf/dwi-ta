@@ -267,7 +267,10 @@ class AppuserController extends Controller {
       $store->city= strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("city")));
       $store->shipping_type= strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("shipping_type")));
       $store->subtotal=number_format($request->get("subtotal"), 2, '.', '');
-      $store->delivery_charges=number_format($request->get("charge"), 2, '.', '');
+      if($request->get("shipping_type")==0){
+           $store->delivery_charges=number_format($request->get("charge"), 2, '.', '');
+      }
+     
       $store->phone_no=strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("phone")));
       $store->delivery_mode=strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("shipping_type")));
       $store->notify=1;

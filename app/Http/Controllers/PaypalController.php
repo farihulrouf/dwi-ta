@@ -204,13 +204,16 @@ class PaypalController extends Controller
                       $store->shipping_type= strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("shipping_type_pal")));
 
                       $store->subtotal=number_format($request->get("subtotal_pal"), 2, '.', '');
-
-                      $store->delivery_charges=number_format($request->get("charage_pal"), 2, '.', '');
+                        if($request->get("shipping_type_pal")==0){
+                            $store->delivery_charges=number_format($request->get("charage_pal"), 2, '.', '');
+                        }
+                     
 
                       $store->phone_no= strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("phone_pal")));
                       $store->pay_pal_paymentId=$payment->getId();
                       $store->delivery_mode=$store->shipping_type;
                       $store->notify=1;
+                      $store->is_complete='0';
                       $store->save();
                        foreach ($cartCollection as $ke) {
                               $getmenu=itemli::where("menu_name",$ke->name)->first();
@@ -272,7 +275,9 @@ class PaypalController extends Controller
             return Redirect::away($redirect_url);
         }
          $order=Order::where("pay_pal_paymentId",$payment_id)->first();
-         if(count($order)!=0){
+         if($order){
+             OrderResponse::where("set_order_id",$order->id)->delete();
+             FoodOrder::where("order_id",$order->id)->delete();
             $order->delete();
          }
          Session::flash('message',__('successerr.payment_fail')); 
@@ -287,7 +292,9 @@ class PaypalController extends Controller
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             \Session::put('error','Payment failed');
              $order=Order::where("pay_pal_paymentId",$payment_id)->first();
-             if(count($order)!=0){
+             if($order){
+                  OrderResponse::where("set_order_id",$order->id)->delete();
+             FoodOrder::where("order_id",$order->id)->delete();
                 $order->delete();
              }
              Session::flash('message',__('successerr.payment_fail')); 
@@ -304,6 +311,7 @@ class PaypalController extends Controller
              $order=Order::where("pay_pal_paymentId",$payment_id)->first();
              $order->pay_pal_token=$request->get('token');
              $order->pay_pal_PayerID=$request->get('PayerID');
+             $order->is_complete='1';
              $order->save();
              Cart::clear();
             /* event(new FormSubmitted(__('messages.site_name'),__('messages.notificationplaceorder'),$order->user_id,$image1));
@@ -313,7 +321,9 @@ class PaypalController extends Controller
              return redirect("viewdetails/".$order->id);
         }
          $order=Order::where("pay_pal_paymentId",$payment_id)->first();
-         if(count($order)!=0){
+         if($order){
+              OrderResponse::where("set_order_id",$order->id)->delete();
+             FoodOrder::where("order_id",$order->id)->delete();
             $order->delete();
          }
          Session::flash('message',__('successerr.payment_fail')); 

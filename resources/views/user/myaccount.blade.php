@@ -94,7 +94,7 @@
                               <p>{{$order->address}}</p>
                            </div>
                            <div class="order-price My-b">
-                              <h1>{{Session::get("usercurrency")}}{{$order->total_price}}</h1>
+                              <h1>{{$curreny}}{{$order->total_price}}</h1>
                            </div>
                            <div class="order-date My-b">
                               <h1><?php 

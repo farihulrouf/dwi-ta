@@ -16,7 +16,8 @@ $(document).ready(function () {
                     return '<img src="'+data+'" height="50">';
               }
             }   
-        ]      
+        ],
+        order:[0,"desc"]
          
     });
 });
@@ -59,7 +60,7 @@ $(document).ready(function () {
             {data: 'name'  , name: 'name'},
             {data: 'action', name:'action'}
         ],
-       
+        order:[0,"desc"]
     });
 });
 function editcity(id){
@@ -86,7 +87,8 @@ $(document).ready(function () {
             {data: 'email'  , name: 'email'},
             {data: 'phone_no' , name:'phone_no'},
             {data: 'msg' , name:'msg'}
-        ]       
+        ],
+        order:[0,"desc"]
     });
 });
 $(document).ready(function () {
@@ -105,7 +107,7 @@ $(document).ready(function () {
             {data:'date',name:'date'},
             {data: 'action', name:'action'}
         ],
-      
+        order:[0,"desc"]
     });
 });
 function edit_record(id){
@@ -146,7 +148,8 @@ $(document).ready(function () {
                        return "<b>"+$("#small_price_lang").val()+":-</b>"+str[0]+"</br> <b>"+$("#medium_price_lang").val()+":-</b>"+str[1]+"<br><b>"+$("#large_price_lang").val()+":-</b>"+str[2];
                     }
             }  
-        ]  
+        ],
+        order:[0,"desc"]
     });
 });
 function yesnoCheck(val,data) {
@@ -196,6 +199,7 @@ function editing(id){
              $("#editcategory").val(data.data.category);
              $("#editname").val(data.data.item_name);
            //  $("#editprice").val(data.data.price);
+             console.log(data.data.small_price);
              $('#edit_small_price').val(data.data.small_price);
              $('#edit_medium_price').val(data.data.medium_price);
              $('#edit_large_price').val(data.data.large_price);
@@ -203,17 +207,17 @@ function editing(id){
                   document.getElementById("small_price_edit_1").style.display="block";
                   document.getElementById("medium_price_edit_1").style.display="block";
                   document.getElementById("large_price_edit_1").style.display="block";
-                  document.getElementById("small_price_edit").required=true;
-                  document.getElementById("medium_price_edit").required=true;
-                  document.getElementById("large_price_edit").required=true;
+                  document.getElementById("edit_small_price").required=true;
+                  document.getElementById("edit_medium_price").required=true;
+                  document.getElementById("edit_large_price").required=true;
              }
              else{//free
                   document.getElementById("small_price_edit_1").style.display="none";
                   document.getElementById("medium_price_edit_1").style.display="none";
                   document.getElementById("large_price_edit_1").style.display="none";
-                  document.getElementById("small_price_edit").required=false;
-                  document.getElementById("medium_price_edit").required=false;
-                  document.getElementById("large_price_edit").required=false;
+                  document.getElementById("edit_small_price").required=false;
+                  document.getElementById("edit_medium_price").required=false;
+                  document.getElementById("edit_large_price").required=false;
              }
              $("#edititemlist").val(data.data.menu_id);
              $("input[name='edittype'][value='"+data.data.type+"']").prop('checked', true);          
@@ -247,7 +251,8 @@ $(document).ready(function () {
                        return "<b>"+$("#small_price_lang").val()+":-</b>"+str[0]+"</br> <b>"+$("#medium_price_lang").val()+":-</b>"+str[1]+"<br><b>"+$("#large_price_lang").val()+":-</b>"+str[2];
                     }
             }  
-        ]      
+        ],
+        order:[0,"desc"]
          
     });
 });
@@ -278,7 +283,8 @@ $(document).ready(function () {
         columns: [
             {data: 'id'    , name: 'id'},
             {data: 'message'  , name: 'message'}
-        ]
+        ],
+        order:[0,"desc"]
     });
 });
 $(document).ready(function () {
@@ -292,7 +298,8 @@ $(document).ready(function () {
             {data: 'email'  , name: 'email'},
             {data: 'phone_no' , name:'phone_no'},           
             {data: 'action', name:'action'}
-        ]       
+        ],
+        order:[0,"desc"]
     });
 });
  function checkboth(val){
@@ -534,6 +541,7 @@ function changeordersetting(status){
                 console.log(data);
                 document.getElementById("orderheader").innerHTML=$("#order_no_msg").val()+":- "+data.orderdata.id;
                 document.getElementById("username").innerHTML=data.orderdata.name;
+                document.getElementById("phoneno").innerHTML=data.orderdata.phone_no;
            
                
                 document.getElementById("ordertime").innerHTML=data.orderdata.order_placed_date;
@@ -591,7 +599,7 @@ function changeordersetting(status){
                      txt=txt+'</td><td>'+data.itemdata[i].ItemTotalPrice+" "+data.currency+'</td></tr>';                     
                      total=parseFloat(total)+parseFloat(data.itemdata[i].ItemTotalPrice);
                 }
-                txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_subtotal").val()+'</th><td>'+total+' '+data.currency+'</td></tr>';
+                txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_subtotal").val()+'</th><td>'+total.toFixed(2)+' '+data.currency+'</td></tr>';
                 txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_delivery_charges").val()+'</th><td>'+data.orderdata.delivery_charges+' '+data.currency+'</td></tr>';
                
                 txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_total").val()+'</th><th>'+data.orderdata.total_price+' '+data.currency+'</th></tr>';
@@ -686,18 +694,19 @@ function deliverymoredata(id){
                var txt="";
                 txt=txt+'<tbody><tr><th>'+$("#orderitem_name").val()+'</th><th>'+$("#item_size_lang").val()+'</th><th>'+$("#ordermsg_item_qty").val()+'</th><th>'+$("#ordermsg_price").val()+'</th><th>'+$("#ordermsg_totalprice").val()+'</th></tr>';
                var total=0;
-                 for(var i=0;i<data.itemdata.length;i++){
-                     txt=txt+'<tr><td><b>'+data.itemdata[i].itemdata.menu_name+'</b></br>';
+                for(var i=0;i<data.itemdata.length;i++){
                     
+                     txt=txt+'<tr><td><b>'+data.itemdata[i].itemdata.menu_name+'</b></br>';
+                     var str=data.itemdata[i].itemsize;
                      for(var k=0;k<data.itemdata[i].ingredientdata.length;k++){
                         txt=txt+'<span>'+data.itemdata[i].ingredientdata[k]['item_name']+'</span></br>';
                      }
-                     txt=txt+'</td><td>'+data.itemdata[i].itemsize+'</td><td>'+data.itemdata[i].item_qty+'</td>';
-                             if(data.itemdata[i].itemsize=="M"){
+                     txt=txt+'</td><td>'+str.toUpperCase()+'</td><td>'+data.itemdata[i].item_qty+'</td>';
+                             if(str.toUpperCase()=="M"){
                                  
                                  txt=txt+'<td>'+data.itemdata[i].itemdata.medium_price+" "+data.currency+'</br>';
                             }
-                            else if(data.itemdata[i].itemsize=="S"){
+                            else if(str.toUpperCase()=="S"){
                                 
                                  txt=txt+'<td>'+data.itemdata[i].itemdata.small_price+" "+data.currency+'</br>';
                             }   
@@ -707,19 +716,20 @@ function deliverymoredata(id){
                             } 
                    
                      for(var k=0;k<data.itemdata[i].ingredientdata.length;k++){
-                        if(data.itemdata[i].ingredientdata[k]['price']==0){
+                        if(data.itemdata[i].ingredientdata[k]['type']==0){
                              txt=txt+'<span>---</span></br>';
                         }
                         else{
-                            if(data.itemdata[i].itemsize=="M"){
-                                
+                            if(str.toUpperCase()=="M"){
+                                 console.log("M");
                                  txt=txt+'<span>'+data.itemdata[i].ingredientdata[k]['medium_price']+" "+data.currency+'</span></br>';
                             }
-                            else if(data.itemdata[i].itemsize=="S"){
-                                  
+                            else if(str.toUpperCase()=="S"){
+                                  console.log("S");
                                  txt=txt+'<span>'+data.itemdata[i].ingredientdata[k]['small_price']+" "+data.currency+'</span></br>';
                             }   
-                            else{                                
+                            else{
+                                 console.log("L");
                                  txt=txt+'<span>'+data.itemdata[i].ingredientdata[k]['large_price']+" "+data.currency+'</span></br>';
                             }                           
                         }
@@ -727,7 +737,7 @@ function deliverymoredata(id){
                      txt=txt+'</td><td>'+data.itemdata[i].ItemTotalPrice+" "+data.currency+'</td></tr>';                     
                      total=parseFloat(total)+parseFloat(data.itemdata[i].ItemTotalPrice);
                 }
-                txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_subtotal").val()+'</th><td>'+total+' '+data.currency+'</td></tr>';
+                txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_subtotal").val()+'</th><td>'+total.toFixed(2)+' '+data.currency+'</td></tr>';
                 txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_delivery_charges").val()+'</th><td>'+data.orderdata.delivery_charges+' '+data.currency+'</td></tr>';
                
                 txt=txt+'<tr><td></td><td></td><td></td><th>'+$("#ordermsg_total").val()+'</th><th>'+data.orderdata.total_price+' '+data.currency+'</th></tr>';

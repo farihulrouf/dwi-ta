@@ -72,9 +72,9 @@ class IngredientsController extends Controller {
            $store->large_price=0.00;
        }
        else{
-          $store->small_price=number_format($request->get("small_price"),2,".",".");
-           $store->medium_price=number_format($request->get("medium_price"),2,".",".");
-           $store->large_price=number_format($request->get("large_price"),2,".",".");
+          $store->small_price=number_format($request->get("small_price"),2,".","");
+           $store->medium_price=number_format($request->get("medium_price"),2,".","");
+           $store->large_price=number_format($request->get("large_price"),2,".","");
        }
       
        $store->save();

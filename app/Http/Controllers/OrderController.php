@@ -25,7 +25,7 @@ class OrderController extends Controller {
   
     
     public function orderdatatable(Request $request){
-      $user =Order::orderBy('id','DESC')->get();
+      $user =Order::orderBy('id','DESC')->where("is_complete",'1')->get();
 
         return DataTables::of($user)
             ->editColumn('id', function ($user) {
@@ -52,7 +52,7 @@ class OrderController extends Controller {
              ->editColumn('status', function ($user) {
               $status="";
                   if($user->order_status==0){
-                                      $status=__('messages.preparing');
+                                      $status=__('messages.Processing');
                   }
                   if($user->order_status==1&&$user->delivery_mode=='0'){
                                       $status=__('messages.accept');
@@ -338,8 +338,8 @@ static public function generate_timezone_list(){
                  $this->send_notification_IOS($noti_key->ios_key,$update->user_id,$msg,"user_id");
                   event(new FormSubmitted(__('messages.site_name'),$msg,$update->user_id,asset('burger/images/web-nav-logo.png')));
                  $update->order_status=$status;
-                 $update->delivered_date_time=$date;
-                 $update->delivered_status=1;
+              $update->dispatched_date_time=$date;
+                 $update->dispatched_status=1;
                  $update->save();
                  Session::flash('message',__('successerr.order_delived_msg')); 
                  Session::flash('alert-class', 'alert-success');
@@ -364,8 +364,9 @@ static public function generate_timezone_list(){
                  $this->send_notification_IOS($noti_key->ios_key,$update->user_id,$msg,"user_id");
                  event(new FormSubmitted(__('messages.site_name'),$msg,$update->user_id,asset('burger/images/web-nav-logo.png')));
                  $update->order_status=4;
-                 $update->dispatched_date_time=$date;
-                 $update->dispatched_status=1;
+                
+                     $update->delivered_date_time=$date;
+$update->delivered_status=1;
                  $update->save();
                  Session::flash('message',__('successerr.order_complete_suc_msg')); 
                  Session::flash('alert-class', 'alert-success');
@@ -489,11 +490,11 @@ static public function generate_timezone_list(){
      }
 
      public function haveOrdersNotification(){
-        $order=Order::where("notify",'1')->get();
+        $order=Order::where("notify",'1')->where("is_complete",'1')->get();
         return count($order);
      }
       public function haveOrdersdata(){
-        $order=Order::where("notify",'1')->get();
+        $order=Order::where("notify",'1')->where("is_complete",'1')->get();
         return count($order);
      }
 

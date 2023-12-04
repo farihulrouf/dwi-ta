@@ -56,7 +56,7 @@
                      <i class="fa fa-address-book" aria-hidden="true"></i>
                   </div>
                   <div class="col-md-10 col-10 co-add">
-                     <p>{{Session::get('address')}}</p>
+                     <p>{{$setting->address}}</p>
                   </div>
                </div>
                <div class="f-location col-md-12 p-0">
@@ -64,7 +64,7 @@
                      <i class="fa fa-envelope" aria-hidden="true"></i>
                   </div>
                   <div class="col-md-10 col-10 co-add">
-                     <p>{{Session::get('email')}}</p>
+                     <p>{{$setting->email}}</p>
                   </div>
                </div>
                <div class="f-location col-md-12 p-0">
@@ -72,7 +72,7 @@
                      <i class="fa fa-phone" aria-hidden="true"></i>
                   </div>
                   <div class="col-md-10 col-10 co-add">
-                      <p>{{Session::get('phone')}}</p>
+                      <p>{{$setting->phone}}</p>
                   </div>
                </div>
                </p>

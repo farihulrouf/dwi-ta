@@ -202,7 +202,7 @@
       <script src="{{asset('admin_panel/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
       <script src="{{asset('admin_panel/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
       <script src="{{asset('admin_panel/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
-      <script type="text/javascript" src="{{asset('public/js/admin.js')}}"></script>
+      <script type="text/javascript" src="{{asset('public/js/admin.js?v=66')}}"></script>
       @yield('footer')
    </body>
 </html>

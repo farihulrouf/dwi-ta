@@ -12,14 +12,14 @@ use App\AppUser;
 use App\Delivery;
 use App\Setting;
 use Hash;
-use Artisan;
 use DateTimeZone;
+use Artisan;
 use DateTime;
 class AuthenticationController extends Controller {
   
     
     public function showlogin(){
-       
+       // Artisan::call('config:cache');
          $store=Setting::find(1);
         Session::put("is_web",$store->is_web);
         return view("admin.login");
@@ -96,8 +96,8 @@ class AuthenticationController extends Controller {
          $store->whatsapp=$request->get("whatsapp");
          $store->app_store_url=$request->get("appstore");
          $store->play_store_url=$request->get("playstore");
-         $store->have_playstore=$request->get("have_playstore")?$request->get("have_playstore"):0;
-         $store->have_appstore=$request->get("have_appstore")?$request->get("have_appstore"):0;
+         $store->have_playstore=$request->get("have_playstore")?$request->get("have_playstore"):'0';
+         $store->have_appstore=$request->get("have_appstore")?$request->get("have_appstore"):'0';
          $store->save();
          Session::flash("message",__('successerr.data_save'));
          Session::flash('alert-class', 'alert-success');
@@ -118,14 +118,15 @@ class AuthenticationController extends Controller {
     }
 
     public function savepaymentdata(Request $request){
+         // dd($request->all());
          $store1=Setting::find(1);
          $store1->stripe_key=$request->get("stripe_key");
          $store1->stripe_secret=$request->get("stripe_secret");
          $store1->paypal_client_id=$request->get("paypal_client_id");
          $store1->paypal_client_secret=$request->get("paypal_client_secret");
-         $store1->paypal_mode=$request->get("paypal_mode")?$request->get("paypal_mode"):'0';
-         $store1->stripe_active=$request->get("stripe_active");
-         $store1->paypal_active=$request->get("paypal_active");
+         $store1->paypal_mode=$request->get("paypal_mode")=='0'?$request->get("paypal_mode"):'1';
+         $store1->stripe_active=$request->get("stripe_active")?$request->get("stripe_active"):'0';
+         $store1->paypal_active=$request->get("paypal_active")?$request->get("paypal_active"):'0';
          $store1->save();
          if($store1->is_web=='1'||$store1->is_web=='2'){
             Session::flash("message",__('successerr.data_save'));
@@ -286,7 +287,7 @@ class AuthenticationController extends Controller {
     }
    
     public function postlogin(Request $request){ 
-      $user=Sentinel::authenticate($request->all());
+            $user=Sentinel::authenticate($request->all());
                if($user){
                    Session::put("profile_pic",asset("public/upload/images/profile/"."/".$user->profile_pic));
                    Session::put("currency",$user->currency);
@@ -294,16 +295,17 @@ class AuthenticationController extends Controller {
                    return  redirect("dashboard");    
                } 
                else{
+                 
                 Session::flash('message', __('successerr.login_error')); 
                 Session::flash('alert-class', 'alert-danger');
-                return redirect()->back();
+                return redirect('admin');
                } 
     } 
 
     public function showdashboard(){
       $user=Sentinel::getUser();
       if($user){
-         $today_order=Order::whereDate('created_at',date('y-m-d'))->get();
+       $today_order=Order::whereDate('created_at',date('y-m-d'))->get();
         $total_order=Order::all();
         $totalnew=count(Order::where("order_status","6")->get());
         $totalcancel=count(Order::where("order_status","0")->get());

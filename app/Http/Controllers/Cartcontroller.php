@@ -53,13 +53,17 @@ class Cartcontroller extends Controller {
           $priceitem=$item_data->large_price;
       }
       $qty=$request->get("qty");
-      $price=$priceitem+array_sum($total);
+      $price=$priceitem;
+      //$price=$priceitem + array_sum($total);
       $data=array("inter"=>$totalint,"size"=>$request->get("size"));
       Cart::add($id, $item_data->menu_name,$price,$qty, array($data));      
       $cartCollection = Cart::getContent();
+      
       Session::flash('message', __('messages.item_success')); 
       Session::flash('alert-class', 'alert-success');
+      
       return $cartCollection->count();
+      
     }
 
 

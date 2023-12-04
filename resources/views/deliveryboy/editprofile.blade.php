@@ -74,8 +74,8 @@
                         <div class="form-group">
                            <label for="file" class=" form-control-label">{{__('messages.pro_pic')}}</label>
                            <?php $external_link =Session::get('profile_pic');
-                              if (@GetImageSize($external_link)) {
-                                      $image = $external_link;
+                              if ($data->profile!="") {
+                                      $image = asset('public/upload/images/profile').'/'.$data->profile;
                               } else {
                                       $image = asset('burger/images/my-account-pro.png');
                               }?>

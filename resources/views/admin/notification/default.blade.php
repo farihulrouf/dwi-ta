@@ -62,8 +62,7 @@
                   {{csrf_field()}}
                   <div class="form-group">
                      <label>{{__('messages.msg')}}</label>
-                     <textarea class="form-control desche" name="message" required>
-                     </textarea>
+                     <textarea class="form-control desche" name="message" required></textarea>
                   </div>
                   <div class="col-md-12">
                      <div class="col-md-6">

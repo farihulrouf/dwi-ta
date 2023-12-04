@@ -53,13 +53,13 @@
                <div class="detail-product-head">
                   <h4>{{$itemdetails->menu_name}}</h4>
                   @if($sized=='s')
-                    <p>{{Session::get("usercurrency")}}<span id="price">{{$itemdetails->small_price}}</span></p>
+                    <p>{{$curreny}}<span id="price">{{$itemdetails->small_price}}</span></p>
                     <input type="hidden" id="origin_price" name="origin_price" value="{{$itemdetails->small_price}}" />
                   @elseif($sized=='m')
-                    <p>{{Session::get("usercurrency")}}<span id="price">{{$itemdetails->medium_price}}</span></p>
+                    <p>{{$curreny}}<span id="price">{{$itemdetails->medium_price}}</span></p>
                     <input type="hidden" id="origin_price" name="origin_price" value="{{$itemdetails->medium_price}}" />
                   @else
-                    <p>{{Session::get("usercurrency")}}<span id="price">{{$itemdetails->large_price}}</span></p>
+                    <p>{{$curreny}}<span id="price">{{$itemdetails->large_price}}</span></p>
                     <input type="hidden" id="origin_price" name="origin_price" value="{{$itemdetails->large_price}}" />
                   @endif
                   
@@ -68,9 +68,10 @@
                   <p id="descriptionpro">{{$itemdetails->description}}</p>
                </div>
                 <div class="size_main_sb">
-                   <a href="javascript:changepriceqty1(0,'s','{{$itemdetails->id}}','{{$itemdetails->small_price}}')" id="s0">S</a>
-                   <a href="javascript:changepriceqty1(0,'m','{{$itemdetails->id}}','{{$itemdetails->medium_price}}')" class="active" id="m0">M</a>
-                   <a href="javascript:changepriceqty1(0,'l','{{$itemdetails->id}}','{{$itemdetails->large_price}}')" id="l0">L</a>
+                    
+                   <a href="javascript:changepriceqty1(0,'s','{{$itemdetails->id}}','{{$itemdetails->small_price}}')" class="detaills <?= $sized=='s'?'active':'';?>" id="0s">S</a>
+                   <a href="javascript:changepriceqty1(0,'m','{{$itemdetails->id}}','{{$itemdetails->medium_price}}')" class=" detaills <?= $sized=='m'?'active':'';?>" id="0m">M</a>
+                   <a href="javascript:changepriceqty1(0,'l','{{$itemdetails->id}}','{{$itemdetails->large_price}}')" class="detaills <?= $sized=='l'?'active':'';?>" id="0l">L</a>
                </div>
                <div class="detail-share-buttons">
                   <div class="detail-facebook">
@@ -102,7 +103,7 @@
                                 <td>
                                     <label class="custom-checkbox-label" style="    font-size: 15px;">
                                          {{$mi->item_name}}
-                                         ({{Session::get("usercurrency")}}
+                                         ({{$curreny}}
                                              @if($sized=='s')
                                             <span id="in{{$mi->id}}">{{$mi->small_price}}</span> )
                                              @elseif($sized=='m')
@@ -133,7 +134,7 @@
                                     <label class="custom-checkbox-label" style="    font-size: 15px;">
                                          {{$mi->item_name}} 
                                              
-                                            ({{Session::get("usercurrency")}}
+                                            ({{$curreny}}
                                              @if($sized=='s')
                                             <span id="in{{$mi->id}}">{{$mi->small_price}}</span> )
                                              @elseif($sized=='m')
@@ -181,41 +182,79 @@
       <div class="detail-related-head">
          <h3>{{__('messages.realted_pro')}}</h3>
       </div>
-      <div class="row">
-            <?php $i=0; ?>
-           @foreach($items as $it)
-           @if($it->categoryitem->id==$itemdetails->category)
-           <div class="portfolio {{$it->categoryitem->id}} col-md-6 burger" data-cat="{{$it->categoryitem->id}}">
-              <div class="items">
-                   <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
-                 <div class="b-img">
-                    <a href="javascript:gotodetail('{{$it->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$it->menu_image)}}"></a>
-                 </div>
-                 <div class="bor">
-                    <div class="b-text">
-                       <h1><a href="javascript:gotodetail('{{$it->id}}','{{$i}}')">{{substr($it->menu_name,0,15)}}</a></h1>
-                       <p>
-                          {{$it->description}}
-                       </p>
-                       <div class="size_main_sb">
-                          <a href="javascript:changepriceqty({{$i}},'s',{{$it->id}},'{{(float)$it->small_price}}')" id="s{{$i}}">S</a>
-                          <a href="javascript:changepriceqty({{$i}},'m',{{$it->id}},'{{(float)$it->medium_price}}')" class="active" id="m{{$i}}">M</a>
-                          <a href="javascript:changepriceqty({{$i}},'l',{{$it->id}},'{{(float)$it->large_price}}')" id="l{{$i}}">L</a>
-                       </div>
-                    </div>
-                    <div class="price">
-                       <h1>{{Session::get("usercurrency")}} <span id="priceitem{{$i}}">{{$it->medium_price}}</span></h1>
-                       <div class="cart">
-                          <a href="javascript:gotodetail('{{$it->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-           @endif
-           <?php $i++;?>
-           @endforeach
-        </div>
+      
+          <div id="portfoliolistrelatedpro">
+               <?php 
+                        for($i=0;$i<count($items);$i++){ if($itemdetails->category==$items[$i]->category){?>
+                          
+                             <?php echo "<div class='row'>";
+                             
+                             if(isset($items[$i])&&$itemdetails->category==$items[$i]->category){ ?>
+                                   <div class="portfolio {{$items[$i]->categoryitem->id}} burger w3-animate-zoom" data-cat="{{$items[$i]->categoryitem->id}}" style="display-block">
+                                      <div class="items">
+                                          <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
+                                         <div class="b-img">
+                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
+                                         </div>
+                                         <div class="bor">
+                                            <div class="b-text">
+                                               <h1><a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{$items[$i]->menu_name}}</a></h1>
+                                               <p>
+                                                  {{substr($items[$i]->description,0,75)}}
+                                               </p>
+                                               <div class="size_main_sb">
+                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}','r')" id="s{{$i}}r" class="sizename{{$i}}r">S</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}','r')" class="active sizename{{$i}}r" id="m{{$i}}r">M</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}','r')" id="l{{$i}}r" class="sizename{{$i}}r">L</a>
+                                               </div>
+                                            </div>
+                                            <div class="price">
+                                               <h1>{{$curreny}}<span id="priceitem{{$i}}r">{{$items[$i]->medium_price}}</span></h1>
+                                               <div class="cart">
+                                                  <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                
+                             <?php $i=$i+1;}
+                             if(isset($items[$i])&&$itemdetails->category==$items[$i]->category){ ?>
+                                   <div class="portfolio {{$items[$i]->categoryitem->id}} burger w3-animate-zoom" data-cat="{{$items[$i]->categoryitem->id}}">
+                                      <div class="items">
+                                          <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
+                                         <div class="b-img">
+                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
+                                         </div>
+                                         <div class="bor">
+                                            <div class="b-text">
+                                               <h1><a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{$items[$i]->menu_name}}</a></h1>
+                                               <p>
+                                                  {{substr($items[$i]->description,0,75)}}
+                                               </p>
+                                               <div class="size_main_sb">
+                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}','r')" id="s{{$i}}r" class="sizename{{$i}}r">S</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}','r')" class="active sizename{{$i}}r" id="m{{$i}}r">M</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}','r')" id="l{{$i}}r" class="sizename{{$i}}r">L</a>
+                                               </div>
+                                            </div>
+                                            <div class="price">
+                                               <h1>{{$curreny}} <span id="priceitem{{$i}}r">{{$items[$i]->medium_price}}</span></h1>
+                                               <div class="cart">
+                                                  <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                 
+                             <?php } 
+                             echo "</div>"; ?>
+                            
+                             <?php
+                        } } ?>
+          </div>
+      
    </div>
 </div>
 </div>

@@ -54,10 +54,10 @@
                      </div>
                      <div class="form-group">
                         <label>{{__('messages.password')}}</label>
-                        <input type="password" name="password" id="password" class="form-control" value="123" placeholder="{{__('messages.password')}}">
+                        <input type="password" name="password" id="password" class="form-control" value="admin@123" placeholder="{{__('messages.password')}}">
                      </div>
                      <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">{{__('messages.login')}}</button>
-                     <a href="{{url('deliveryboy')}}" class="btn btn-success btn-flat m-b-30 m-t-30 adminbtn">{{__('messages.sing_delivery')}}</a></p>
+                     <a href="{{url('deliveryboy')}}" class="btn btn-success btn-flat m-b-30 m-t-30 adminbtn" style="color:white !important">{{__('messages.sing_delivery')}}</a></p>
                      
                   </form>
                </div>
@@ -69,6 +69,6 @@
       <script src="{{asset('admin_panel/vendors/popper.js/dist/umd/popper.min.js')}}"></script>
       <script src="{{asset('admin_panel/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
       <script src="{{asset('admin_panel/assets/js/main.js')}}"></script>
-      <script type="text/javascript" src="{{asset('public/js/admin.js')}}"></script>
+  
    </body>
 </html>

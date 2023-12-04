@@ -125,8 +125,10 @@ static public function generate_timezone_list(){
       $store->shipping_type= strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("shipping_type_or")));
 
      $store->subtotal=number_format($request->get("subtotal_or"), 2, '.', '');
-
-      $store->delivery_charges=number_format($request->get("charage_or"), 2, '.', '');
+      if($request->get("shipping_type_or")==0){
+           $store->delivery_charges=number_format($request->get("charage_or"), 2, '.', '');
+      }
+     
      
       $store->phone_no=  strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("phone_or")));
       $store->delivery_mode=strip_tags(preg_replace('#<script(.*?)>(.*?)</script>#is', '',$request->get("shipping_type_or")));
@@ -142,7 +144,7 @@ static public function generate_timezone_list(){
            $result['ItemTotalPrice']=number_format($totalamount, 2, '.', '');
            $result['ItemSize']=$ke->attributes[0]['size'];
            $ingredient=array();
-           
+           $inter_ids = array();
           foreach ($ke->attributes[0]['inter'] as $val) {
                $ls=array();
               

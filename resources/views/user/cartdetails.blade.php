@@ -87,8 +87,7 @@
                               <td class="cart-category-items">
                                  <h6>{{__('messages.price')}}:</h6>
                                  <p class="cart-category-items-price">
-                                    {{Session::get("usercurrency")}}
-                                    <span id="price_pro{{$item->id}}">
+                                    {{$curreny}}<span id="price_pro{{$item->id}}">
                                      {{number_format($item->price, 2, '.', '')}}
                                     </span>
                                  </p>
@@ -119,7 +118,7 @@
                                  <?php $totalamount=(float)$item->quantity*(float)$item->price;?>
                                  <h6>{{__('messages.total')}}:</h6>
                                  <p class="cart-category-items-price" id="producttotal{{$item->id}}">
-                                    {{Session::get("usercurrency")}}{{number_format($totalamount, 2, '.', '')}}
+                                    {{$curreny}}{{number_format($totalamount, 2, '.', '')}}
                                  </p>
                               </td>
                            </tr>
@@ -143,7 +142,7 @@
                      <h4>
                         {{__('messages.subtotal')}}
                      </h4>
-                      <p>{{Session::get("usercurrency")}}<span id="subtotal"><?php echo number_format(Cart::getTotal(), 2, '.', '');?></span></p>
+                      <p>{{$curreny}}<span id="subtotal"><?php echo number_format(Cart::getTotal(), 2, '.', '');?></span></p>
                     
                   </div>
                </div>
@@ -151,13 +150,13 @@
                   <div class="cart-bs-head">
                      <h4>{{__('messages.DC')}}</h4>
                      <input type="hidden"  id="delivery_charges" value="{{number_format($delivery_charges, 2, '.', '')}}"/>
-                     <p>{{Session::get("usercurrency")}}<span id="delivery_charges_order">{{number_format($delivery_charges, 2, '.', '')}}</span></p>
+                     <p>{{$curreny}}<span id="delivery_charges_order">{{number_format($delivery_charges, 2, '.', '')}}</span></p>
                   </div>
                </div>
                <div class="cart-b-subtotal">
                   <div class="cart-bs-head cart-bs-ftotal">
                      <h4>{{__('messages.total')}}</h4>
-                     <p class="cartfinaltotal" >{{Session::get("usercurrency")}}
+                     <p class="cartfinaltotal" >{{$curreny}}
                      <span id="finaltotal">
                          <?php
                                 $subtotal=Cart::getTotal();

@@ -169,15 +169,15 @@
                   </div> -->
                     <div class="form-group is_hide" id="small_price_edit_1">
                      <label>{{__('messages.Small Price')}}</label>
-                     <input type="text" class="form-control" id="small_price_edit" placeholder="{{__('messages.Small Price')}}" name="small_price"   id="edit_small_price">
+                     <input type="text" class="form-control"  placeholder="{{__('messages.Small Price')}}" name="small_price"   id="edit_small_price">
                   </div> 
                     <div class="form-group is_hide" id="medium_price_edit_1" >
                      <label>{{__('messages.Medium Price')}}</label>
-                     <input type="text" class="form-control" id="medium_price_edit" placeholder="{{__('messages.Medium Price')}}" name="medium_price"   id="edit_medium_price">
+                     <input type="text" class="form-control" placeholder="{{__('messages.Medium Price')}}" name="medium_price"   id="edit_medium_price">
                   </div>
                     <div class="form-group is_hide" id="large_price_edit_1">
                      <label>{{__('messages.Large Price')}}</label>
-                     <input type="text" class="form-control" id="large_price_edit" placeholder="{{__('messages.Large Price')}}" name="large_price"   id="edit_large_price">
+                     <input type="text" class="form-control" placeholder="{{__('messages.Large Price')}}" name="large_price"   id="edit_large_price">
                   </div>
                   <div class="form-group">
                      <label>{{__('messages.type')}}</label>

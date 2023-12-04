@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Session;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,6 +47,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+             Session::flash('message',"Something Getting Wrong"); 
+             Session::flash('alert-class', 'alert-danger');
+             return redirect('login');
+        }
         return parent::render($request, $exception);
     }
 }

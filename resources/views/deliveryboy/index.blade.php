@@ -78,8 +78,8 @@
                   <div class="user-area dropdown float-right">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      <?php $external_link =Session::get('profile_pic');
-                        if (@GetImageSize($external_link)) {
-                                $image = $external_link;
+                        if (Session::get('profile_pic')!="") {
+                                $image = Session::get('profile_pic');
                         } else {
                                 $image = asset('burger/images/my-account-pro.png');
                         }?>
@@ -113,7 +113,7 @@
       <script src="{{asset('admin_panel/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
       <script src="{{asset('admin_panel/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
       <script src="{{asset('admin_panel/assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
-       <script type="text/javascript" src="{{asset('public/js/admin.js')}}"></script>
+       <script type="text/javascript" src="{{asset('public/js/admin.js?v=02')}}"></script>
       @yield('footer')
    </body>
 </html>

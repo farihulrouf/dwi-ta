@@ -3,13 +3,13 @@
        <meta property="og:type" content="website"/>
        <meta property="og:url" content="{{__('messages.site_name')}}"/>
        <meta property="og:title" content="{{__('messages.site_name')}}"/>
-       <meta property="og:image" content="{{asset('public/upload/favicon1.ico')}}"/>
+       <meta property="og:image" content="{{asset('/public/upload/favicon1.ico')}}"/>
        <meta property="og:image:width" content="250px"/>
        <meta property="og:image:height" content="250px"/>
        <meta property="og:site_name" content="{{__('messages.site_name')}}"/>
        <meta property="og:description" content="{{__('messages.metadescweb')}}"/>
        <meta property="og:keyword" content="{{__('messages.metakeyboard')}}"/>
-       <link rel="shortcut icon" href="{{asset('public/upload/favicon1.ico')}}">
+       <link rel="shortcut icon" href="{{asset('//upload/favicon1.ico')}}">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 @stop
 @section('content')

@@ -259,7 +259,7 @@
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->logo}}" class="webimage" />
+                             <img src="{{asset('upload/web').'/'.$data->logo}}" class="webimage" />
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__("messages.Logo")}} (100X100)<span class="reqfield">*</span></label>
@@ -268,7 +268,7 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->main_banner}}" class="webimage" />
+                             <img src="{{asset('upload/web').'/'.$data->main_banner}}" class="webimage" />
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__("messages.Main Banner")}}(1920X840)<span class="reqfield">*</span></label>
@@ -277,7 +277,7 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->second_sec_img}}" class="webimage"/>
+                             <img src="{{asset('upload/web').'/'.$data->second_sec_img}}" class="webimage"/>
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__("messages.Second Section Image")}}(480X318)<span class="reqfield">*</span></label>
@@ -286,7 +286,7 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->secong_icon_img}}" class="webimage" />
+                             <img src="{{asset('upload/web').'/'.$data->secong_icon_img}}" class="webimage" />
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__("messages.Second Section Icon")}} (57X51)<span class="reqfield">*</span></label>
@@ -295,7 +295,7 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->footer_up_img}}" class="webimage" />
+                             <img src="{{asset('upload/web').'/'.$data->footer_up_img}}" class="webimage" />
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__('messages.Footer Up Image')}}(356X303)<span class="reqfield">*</span></label>
@@ -304,7 +304,7 @@
                      </div>
                      <div class="row">
                          <div class="form-group col-md-3" >
-                             <img src="{{asset('public/upload/web').'/'.$data->footer_img}}" class="webimage"/>
+                             <img src="{{asset('upload/web').'/'.$data->footer_img}}" class="webimage"/>
                          </div>
                          <div class="form-group col-md-9">
                              <label for="stripe_key" class=" form-control-label">{{__('messages.Footer Image')}}(1920X840)<span class="reqfield">*</span></label>

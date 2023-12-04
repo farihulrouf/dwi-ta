@@ -149,9 +149,9 @@
                      <label>{{__('messages.sel_del_boy')}}</label>
                      <select class="form-control" name="assign_id" required>
                         <option value="">{{__('messages.sel_del_boy')}}</option>
-                        @foreach($delivery as $c)
-                        <option value="{{$c->id}}">{{$c->name}}</option>
-                        @endforeach
+                        
+                        <option value="1">Tionel</option>
+                        
                      </select>
                   </div>
                   <div class="col-md-12">

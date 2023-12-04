@@ -191,7 +191,17 @@ function changepassword() {
 }
 
 function divup(val) {
-    document.getElementById("category_div").style.display = "block";
+    $("#portfoliolist").css("display","block");
+    $("#main_content").css("display","none");
+       for (var j = 0; j < $("#totalcategory").val(); j++) {
+                if (j == val) {
+                    $("#catebtn" + j).addClass("activeslider");
+                } else {
+                    $("#catebtn" + j).removeClass("activeslider");
+                }
+            }
+    
+   /* document.getElementById("category_div").style.display = "block";
     document.getElementById("main_content").style.display = "none";
     $.ajax({
         url: $("#path_site").val() + "/category" + "/" + val,
@@ -201,13 +211,22 @@ function divup(val) {
             var data = res.item;
             var txt = "";
             console.log(data);
-            txt=txt+'<div class="row">';
+           
             var path = $("#path_site").val();
             for (var i = 0; i < data.length; i++) {
+                txt=txt+'<div class="row">';
+                if(data[i]!=null){
+                    txt = txt + '<div class="portfolio 1  burger w3-container  w3-animate-zoom portfoliocat" data-cat="1"  data-bound=""><div class="items"><div class="b-img">  <input type="hidden" name="selsize'+i+'" id="selsize'+i+'" value="m" /><a href="javascript:gotodetail('+data[i]['id']+','+i+')"><img src="' + path + '/public/upload/images/menu_item_icon' + "/" + data[i]['menu_image'] + '"></a></div><div class="bor"><div class="b-text"><h1><a class="portfoliocattxt" href="javascript:gotodetail('+data[i]['id']+','+i+')">' + data[i]['menu_name'] + '</a></h1><p>' + data[i]['description'] + '</p><div class="size_main_sb"><a href="javascript:changepriceqty('+i+','+"'s'"+','+data[i]["id"]+','+parseFloat(data[i]["small_price"])+')" id="s'+i+'">S</a><a href="javascript:changepriceqty('+i+','+"'m'"+','+data[i]["id"]+','+parseFloat(data[i]["medium_price"])+')" class="active" id="m'+i+'">M</a><a href="javascript:changepriceqty('+i+','+"'l'"+','+data[i]["id"]+','+parseFloat(data[i]["large_price"])+')" id="l'+i+'">L</a></div></div><div class="price"><h1>' + $("#currency").val() + '<span id="priceitem'+i+'">'+data[i]['medium_price'] + '</span></h1><div class="cart"><a href="javascript:gotodetail('+data[i]['id']+','+i+')">' + $("#addcart").val() + '</a></div></div></div></div></div>';
+                    i++;
+                }
+                if(data[i]!=null){
+                    txt = txt + '<div class="portfolio 1 burger w3-container  w3-animate-zoom portfoliocat" data-cat="1"  data-bound=""><div class="items"><div class="b-img">  <input type="hidden" name="selsize'+i+'" id="selsize'+i+'" value="m" /><a href="javascript:gotodetail('+data[i]['id']+','+i+')"><img src="' + path + '/public/upload/images/menu_item_icon' + "/" + data[i]['menu_image'] + '"></a></div><div class="bor"><div class="b-text"><h1><a class="portfoliocattxt" href="javascript:gotodetail('+data[i]['id']+','+i+')">' + data[i]['menu_name'] + '</a></h1><p>' + data[i]['description'] + '</p><div class="size_main_sb"><a href="javascript:changepriceqty('+i+','+"'s'"+','+data[i]["id"]+','+parseFloat(data[i]["small_price"])+')" id="s'+i+'">S</a><a href="javascript:changepriceqty('+i+','+"'m'"+','+data[i]["id"]+','+parseFloat(data[i]["medium_price"])+')" class="active" id="m'+i+'">M</a><a href="javascript:changepriceqty('+i+','+"'l'"+','+data[i]["id"]+','+parseFloat(data[i]["large_price"])+')" id="l'+i+'">L</a></div></div><div class="price"><h1>' + $("#currency").val() + '<span id="priceitem'+i+'">'+data[i]['medium_price'] + '</span></h1><div class="cart"><a href="javascript:gotodetail('+data[i]['id']+','+i+')">' + $("#addcart").val() + '</a></div></div></div></div></div>';
+                }
                 
-                txt = txt + '<div class="portfolio 1 col-md-6 burger w3-container  w3-animate-zoom portfoliocat" data-cat="1"  data-bound=""><div class="items"><div class="b-img">  <input type="hidden" name="selsize'+i+'" id="selsize'+i+'" value="m" /><a href="javascript:gotodetail('+data[i]['id']+','+i+')"><img src="' + path + '/public/upload/images/menu_item_icon' + "/" + data[i]['menu_image'] + '"></a></div><div class="bor"><div class="b-text"><h1><a class="portfoliocattxt" href="javascript:gotodetail('+data[i]['id']+','+i+')">' + data[i]['menu_name'] + '</a></h1><p>' + data[i]['description'] + '</p><div class="size_main_sb"><a href="javascript:changepriceqty('+i+','+"'s'"+','+data[i]["id"]+','+parseFloat(data[i]["small_price"])+')" id="s'+i+'">S</a><a href="javascript:changepriceqty('+i+','+"'m'"+','+data[i]["id"]+','+parseFloat(data[i]["medium_price"])+')" class="active" id="m'+i+'">M</a><a href="javascript:changepriceqty('+i+','+"'l'"+','+data[i]["id"]+','+parseFloat(data[i]["large_price"])+')" id="l'+i+'">L</a></div></div><div class="price"><h1>' + $("#currency").val() + '<span id="priceitem'+i+'">'+data[i]['medium_price'] + '</span></h1><div class="cart"><a href="javascript:gotodetail('+data[i]['id']+','+i+')">' + $("#addcart").val() + '</a></div></div></div></div></div>';
+                
+                txt=txt+'</div>';
             }
-            txt=txt+'</div>';
+            
             var cat = res.category;
             for (var j = 0; j < cat.length; j++) {
                 if (cat[j]['id'] == val) {
@@ -218,7 +237,7 @@ function divup(val) {
             }
             document.getElementById("category_div").innerHTML = txt;
         }
-    });
+    });*/
 }
 $(document).ready(function () {
     $('#link1').removeClass('active');
@@ -656,15 +675,16 @@ function changebutton(val) {
         $('#subtotal_or').val(document.getElementById("subtotal_order").innerHTML);
 
         if ($("#phone_or").val() != "" && $("#city_or").val() != "") {
-            if ($("#home1").prop("checked") == true) {
+            if ($("#checkbox-0").prop("checked") == true) {
                 var shipping_type = 0;
                 $("#shipping_type_or").val(0);
                 $("#address_or").val($("#us2-address").val());
                 $("#lat_long_or").val($("#us2-lat").val() + "," + $("#us2-lon").val());
                 $('#charage_or').val(document.getElementById("delivery_charges_order").innerHTML);
-            } else if ($("#home2").prop("checked") == true) {
+            } else if ($("#checkbox-1").prop("checked") == true) {
                 var shipping_type = 1;
                 $("#shipping_type_or").val(1);
+                $('#charage_or').val(0);
             }
 
             if (shipping_type == 0 && $("#address_or").val() == "") {
@@ -715,6 +735,7 @@ function changebutton(val) {
             } else if ($("#checkbox-1").prop("checked") == true) {
                 var shipping_type = 1;
                 $("#shipping_type_pal").val(1);
+                $('#charage_pal').val(0);
             }
 
         } else {
@@ -727,6 +748,12 @@ function changebutton(val) {
 }
 
 function changeoption(val) {
+    var paymenttype=[];
+    $.each($("input[name='order_payment_type']:checked"), function () {
+                                paymenttype.push($(this).val());
+                });
+   // alert(paymenttype);
+    
     var subtotal = $("#subtotalorder").val();
     var discharges = $("#delivery_charges").val();
     if (val == 0) {
@@ -747,6 +774,7 @@ function changeoption(val) {
          var str=parseFloat(document.getElementById("finaltotal_order").innerHTML) - parseFloat(discharges);
         document.getElementById("finaltotal_order").innerHTML = str.toFixed(2);
     }
+    changebutton(paymenttype);
 }
 
 function orderplace() {
@@ -756,22 +784,25 @@ function orderplace() {
     var payment_type = 'Cash';
     var totalprice = document.getElementById("finaltotal_order").innerHTML;
     var subtotal = document.getElementById("subtotal_order").innerHTML;
-    var charge = document.getElementById("delivery_charges_order").innerHTML;
+    var charge = 0;
     var typedata = "";
  //   console.log($("#us2-address").val());
 
-    if ($("#checkbox-1").prop("checked") == true) {
+    if ($("#checkbox-0").prop("checked") == true) {
         var shipping_type = 0;
         var address = $("#us2-address").val();
         var latlong = $("#us2-lat").val() + "," + $("#us2-lon").val();
+        var charge = document.getElementById("delivery_charges_order").innerHTML;
     }
     if ($("#checkbox-1").prop("checked") == true) {
         var shipping_type = 1;
         var address ="";
         var latlong ="";
+        var charge=0;
     } 
 
     if (phone != "" && city != "" && payment_type != "") {
+        $('#cashbutton').prop('disabled', true);
         $.ajax({
             url: $("#path_site").val() + "/placeorder",
             method: "GET",
@@ -837,27 +868,19 @@ function addprice(id, iqty) {
         });
 }
 
-function changepriceqty(idata,fields,ids,price){
-    console.log(price);
-   // $.ajax({
-           // url: $("#path_site").val() + "/menuprice" + "/" +fields+'/'+ids,
-          //  data: {},
-           // success: function (data) {
-                $("#s"+idata).removeClass('active');
-                $("#m"+idata).removeClass('active');
-                $("#l"+idata).removeClass('active');
+function changepriceqty(idata,fields,ids,price,tag){ 
+             $(".sizename"+idata+tag).removeClass('active');
+                
                 $("#selsize"+idata).val(fields);
-                $("#"+fields+idata).addClass('active');
-                document.getElementById("priceitem"+idata).innerHTML=parseFloat(price).toFixed(2);
-          //  }
-       // });
+                $("#"+fields+idata+tag).addClass('active');
+                document.getElementById("priceitem"+idata+tag).innerHTML=parseFloat(price).toFixed(2);
+         
 }
-function changepriceqty1(idata,fields,ids,price){
-   
-                $("#s0").removeClass('active');
-                $("#m0").removeClass('active');
-                $("#l0").removeClass('active');
-                $("#"+fields+idata).addClass('active');
+function changepriceqty1(idata,fields,ids,price){   
+                
+                  $(".detaills").removeClass('active');
+                 
+                $("#0"+fields).addClass('active');
                 $("#selectedsize").val(fields);
                 document.getElementById("origin_price").value=price;
                 var favorite = [];
@@ -865,7 +888,6 @@ function changepriceqty1(idata,fields,ids,price){
                                 favorite.push($(this).val());
                 });
                 var totalint = favorite.toString();
-                console.log(totalint);
                 $.ajax({
                         url: $("#path_site").val() + "/itemchanges",
                         data: { 
@@ -875,19 +897,17 @@ function changepriceqty1(idata,fields,ids,price){
                         },
                         success: function (data1) {
                             var str=JSON.parse(data1);
-                            console.log(str);
-                            var total=parseInt($("#origin_price").val())+parseInt(str.total);
+                            var total=parseFloat($("#origin_price").val())+parseFloat(str.total);
                             document.getElementById("price").innerHTML=total.toFixed(2);
                              document.getElementById("origin_price").value=total.toFixed(2);
-                            for(var i=0;i<str.item.length;i++){
-                                if(fields=='s'){
-                                    $("#in"+str.item[i].id).html(str.item[i].small_price);
-                                }else if(fields=='m'){
-                                     $("#in"+str.item[i].id).html(str.item[i].medium_price);
-                                }else{
-                                     $("#in"+str.item[i].id).html(str.item[i].large_price);
-                                }
-                                
+                            for(var i=0;i<str.item.length;i++){  
+                                    console.log(str.item[i].price);
+                                    if(str.item[i].price==""){
+                                        $("#in"+str.item[i].id).html(0.00);  
+                                    }else{
+                                        $("#in"+str.item[i].id).html(str.item[i].price);  
+                                    }                            
+                                                                 
                             }
                         }
                     });

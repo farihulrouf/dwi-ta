@@ -49,12 +49,12 @@ class frontController extends Controller {
       $getcurrency=User::find(1);
       $arr=explode("-",$getcurrency->currency);
       Session::put("usercurrency",$arr[1]);  
-      Session::put("logo",asset("public/upload/web/").'/'.$store->logo);
-      Session::put("main_banner",asset("public/upload/web/").'/'.$store->main_banner);
-      Session::put("second_sec_img",asset("public/upload/web/").'/'.$store->second_sec_img);
-      Session::put("secong_icon_img",asset("public/upload/web/").'/'.$store->secong_icon_img);
-      Session::put("footer_up_img",asset("public/upload/web/").'/'.$store->footer_up_img);
-      Session::put("footer_img",asset("public/upload/web/").'/'.$store->footer_img);
+      Session::put("logo",asset("upload/web/").'/'.$store->logo);
+      Session::put("main_banner",asset("upload/web/").'/'.$store->main_banner);
+      Session::put("second_sec_img",asset("upload/web/").'/'.$store->second_sec_img);
+      Session::put("secong_icon_img",asset("upload/web/").'/'.$store->secong_icon_img);
+      Session::put("footer_up_img",asset("upload/web/").'/'.$store->footer_up_img);
+      Session::put("footer_img",asset("upload/web/").'/'.$store->footer_img);
     }
     
     public function getitemdetails($id,$fields){
@@ -107,7 +107,7 @@ class frontController extends Controller {
       $arr=explode("-",$getcurrency->currency);
       Session::put("usercurrency",$arr[1]);        
    	  $category=Category::where("is_deleted",'0')->get();
-   	  $item=Item::with('categoryitem')->where("is_deleted",'0')->orderby("category","DESC")->get();
+   	  $item=Item::with('categoryitem')->orderby('category')->where("is_deleted",'0')->get();
       foreach ($item as $k) {
            $menu_name=substr($k->menu_name,0,25);
            if($menu_name!=""){
@@ -140,13 +140,15 @@ class frontController extends Controller {
       Session::put("heading_color",$store->heading_color);
       Session::put("description_color",$store->description_color);
       Session::put("white_color",$store->white_color);
-      Session::put("logo",asset("public/upload/web/").'/'.$store->logo);
-      Session::put("main_banner",asset("public/upload/web/").'/'.$store->main_banner);
-      Session::put("second_sec_img",asset("public/upload/web/").'/'.$store->second_sec_img);
-      Session::put("secong_icon_img",asset("public/upload/web/").'/'.$store->secong_icon_img);
-      Session::put("footer_up_img",asset("public/upload/web/").'/'.$store->footer_up_img);
-      Session::put("footer_img",asset("public/upload/web/").'/'.$store->footer_img);
-      return view("user.index")->with("category",$category)->with("items",$item)->with("ingredient",$inter)->with("allmenu",$allmenu)->with("setting",$store);
+      Session::put("logo",asset("upload/web/").'/'.$store->logo);
+      Session::put("main_banner",asset("upload/web/").'/'.$store->main_banner);
+      Session::put("second_sec_img",asset("upload/web/").'/'.$store->second_sec_img);
+      Session::put("secong_icon_img",asset("upload/web/").'/'.$store->secong_icon_img);
+      Session::put("footer_up_img",asset("upload/web/").'/'.$store->footer_up_img);
+      Session::put("footer_img",asset("upload/web/").'/'.$store->footer_img);
+      $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
+      return view("user.index")->with("curreny",$arr[1])->with("category",$category)->with("items",$item)->with("ingredient",$inter)->with("allmenu",$allmenu)->with("setting",$store);
    }
 
    
@@ -155,11 +157,14 @@ class frontController extends Controller {
       $category=Category::where("is_deleted",'0')->get();
       $itemdetails=Item::find($item_id);
       $item=Item::with('categoryitem')->where("category",$itemdetails->category)->where("is_deleted",'0')->get();
-      $inter=Ingredient::where("menu_id",$item_id)->get();
+      $inter=Ingredient::where("menu_id",$item_id)->where("is_deleted",'0')->get();
       $allmenu=Item::all();
       $inter1=Ingredient::all();
-       $itemdata=Item::with('categoryitem')->where("is_deleted",'0')->get();
-      return view("user.detailitem")->with("category",$category)->with("itemdetails",$itemdetails)->with("related_item",$item)->with("menu_interdient1",$inter)->with("allmenu",$allmenu)->with("items",$itemdata)->with("menu_interdient",$inter1)->with("sized",$size);
+      $itemdata=Item::with('categoryitem')->where("is_deleted",'0')->get();
+      $setting=Setting::find(1);
+      $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
+      return view("user.detailitem")->with("curreny",$arr[1])->with("category",$category)->with("itemdetails",$itemdetails)->with("related_item",$item)->with("menu_interdient1",$inter)->with("allmenu",$allmenu)->with("items",$itemdata)->with("menu_interdient",$inter1)->with("sized",$size)->with("setting",$setting);
    }
    
    public function savecontact(Request $request){
@@ -175,6 +180,8 @@ class frontController extends Controller {
    }
       public function category_list($id){
       $category=Category::all();
+      $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
       $item=Item::with('categoryitem')->where("category",$id)->where("is_deleted",'0')->get();
       foreach ($item as $k) {
           $k->menu_name=substr($k->menu_name,0,25);
@@ -222,8 +229,10 @@ class frontController extends Controller {
             $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
             $inter=Ingredient::all();
             $allmenu=Item::all();
+            $getcurrency=User::find(1);
+            $arr=explode("-",$getcurrency->currency);
             $itemdata=Item::with('categoryitem')->where("is_deleted",'0')->get();
-            return view("user.cartdetails")->with("category",$category)->with("itemdetails",$itemdetails)->with("related_item",$item)->with("menu_interdient",$inter)->with("allmenu",$allmenu)->with("delivery_charges",$setting->delivery_charges)->with("items",$itemdata);      
+            return view("user.cartdetails")->with("curreny",$arr[1])->with("setting",$setting)->with("category",$category)->with("itemdetails",$itemdetails)->with("related_item",$item)->with("menu_interdient",$inter)->with("allmenu",$allmenu)->with("delivery_charges",$setting->delivery_charges)->with("items",$itemdata);      
       }else{
              return redirect("/");
       }
@@ -233,8 +242,11 @@ class frontController extends Controller {
       $category=Category::where("is_deleted",'0')->get();
       $allmenu=Item::all();
       $inter=Ingredient::all();
+      $setting=Setting::find(1);
+      $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
       $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-      return view("user.about")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);
+      return view("user.about")->with("curreny",$arr[1])->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("setting",$setting);
        
    }
 
@@ -250,8 +262,11 @@ class frontController extends Controller {
      $category=Category::where("is_deleted",'0')->get();
      $allmenu=Item::all();
      $inter=Ingredient::all();
+     $getcurrency=User::find(1);
+     $arr=explode("-",$getcurrency->currency);
      $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-     return view("user.viewdetails")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("order",$order)->with("itemlist",$itemls);
+     $setting=Setting::find(1);
+     return view("user.viewdetails")->with("curreny",$arr[1])->with("category",$category)->with("setting",$setting)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("order",$order)->with("itemlist",$itemls);
    }
    public function checkout(Request $request){
      if(Session::get("orderstatus")==0){
@@ -267,8 +282,10 @@ class frontController extends Controller {
         
          $lat=21.2284231;
          $long=72.896816;
+         $getcurrency=User::find(1);
+         $arr=explode("-",$getcurrency->currency);
          $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-         return view("user.checkout")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("shipping",$request->get("delivery_option"))->with("delivery_charges",$setting->delivery_charges)->with("city",$city)->with('latitude',$lat)->with("longtitude",$long)->with("setting",$setting);
+         return view("user.checkout")->with("curreny",$arr[1])->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("shipping",$request->get("delivery_option"))->with("delivery_charges",$setting->delivery_charges)->with("city",$city)->with('latitude',$lat)->with("longtitude",$long)->with("setting",$setting);
      }
      else{
            Session::flash('message', __('messages.shipping_error')); 
@@ -280,24 +297,33 @@ class frontController extends Controller {
    public function showcontactus(){
     $category=Category::where("is_deleted",'0')->get();
     $allmenu=Item::all();
-      $inter=Ingredient::all();
-        $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-    return view("user.contact")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);   
+    $inter=Ingredient::all();
+    $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
+    $setting=Setting::find(1);
+    $getcurrency=User::find(1);
+    $arr=explode("-",$getcurrency->currency);
+    return view("user.contact")->with("curreny",$arr[1])->with("category",$category)->with("allmenu",$allmenu)->with("setting",$setting)->with("menu_interdient",$inter)->with("items",$item);   
    }
    public function showservice(){
      $category=Category::where("is_deleted",'0')->get();
      $allmenu=Item::all();
-       $inter=Ingredient::all();
-         $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-     return view("user.service")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);    
+     $inter=Ingredient::all();
+     $setting=Setting::find(1);
+     $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
+     $getcurrency=User::find(1);
+     $arr=explode("-",$getcurrency->currency);
+     return view("user.service")->with("curreny",$arr[1])->with("category",$category)->with("setting",$setting)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);    
    }
 
    public function termofuse(){
      $category=Category::where("is_deleted",'0')->get();
      $allmenu=Item::all();
-       $inter=Ingredient::all();
-         $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
-     return view("user.term")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);
+     $inter=Ingredient::all();
+     $setting=Setting::find(1);
+     $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
+     $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
+     return view("user.term")->with("curreny",$arr[1])->with("setting",$setting)->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item);
    }
 
     public function myaccount(){
@@ -307,9 +333,12 @@ class frontController extends Controller {
       $category=Category::where("is_deleted",'0')->get();
       $allmenu=Item::all();
       $inter=Ingredient::all();
+      $setting=Setting::find(1);
       $item=Item::with('categoryitem')->where("is_deleted",'0')->get();
       $myorder=Order::where("user_id",Session::get("login_user"))->orderby('id','DESC')->get();
-      return view("user.myaccount")->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("myorder",$myorder);
+      $getcurrency=User::find(1);
+      $arr=explode("-",$getcurrency->currency);
+      return view("user.myaccount")->with("curreny",$arr[1])->with("setting",$setting)->with("category",$category)->with("allmenu",$allmenu)->with("menu_interdient",$inter)->with("items",$item)->with("myorder",$myorder);
    }
 }
 

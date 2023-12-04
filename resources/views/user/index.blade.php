@@ -1,51 +1,49 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      
-      <title>{{__('messages.site_name')}}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-       @if(Session::get("is_rtl")==0)
-         <link rel="stylesheet" type="text/css" href="{{asset('design/css/style.css?v=1414145')}}">
-         @else
-         <link rel="stylesheet" type="text/css" href="{{asset('design/css/rtl.css')}}">
-         @endif
-         <meta property="og:type" content="website"/>
-       <meta property="og:url" content="{{__('messages.site_name')}}"/>
-       <meta property="og:title" content="{{__('messages.site_name')}}"/>
-       <meta property="og:image" content="{{asset('public/favicon.png')}}"/>
-       <meta property="og:image:width" content="250px"/>
-       <meta property="og:image:height" content="250px"/>
-       <meta property="og:site_name" content="{{__('messages.site_name')}}"/>
-       <meta property="og:description" content="{{__('messages.metadescweb')}}"/>
-       <meta property="og:keyword" content="{{__('messages.metakeyboard')}}"/>
-       <link rel="shortcut icon" href="{{asset('public/upload/favicon1.ico')}}">
-      <!--<link rel="stylesheet" type="text/css" href="{{asset('design/fonts/stylesheet.css')}}">-->
-      <link rel="stylesheet" type="text/css" href="{{asset('design/fonts/HoboStd.otf')}}">
-      <input type="hidden" id="loginuser" value="{{Session::get('login_user')}}">
-      <script type="text/javascript" src="{{asset('design/js/bootstrap.min.js')}}"></script>
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" type="text/css" href="{{asset('design/css/app.css')}}"/>
-      <link rel="stylesheet" href="{{asset('design/css/font.css')}}">
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-       <link rel="stylesheet" type="text/css" href="{{asset('design/css/bootstrap.min.css')}}">
-        
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-     
-     
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="{{asset('design/js/dropdown.js')}}"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
-      <script type="text/javascript" src=""></script>
-      <script type="text/javascript" src="{{asset('design/js/jquery.mixitup.min.js?v=1')}}"></script>
-      <script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyC1JUHjsnQZtKx5eBOpG42E_CLoJ1s39AU&sensor=false&libraries=places'></script>
-    <script src="{{url('public/js/locationpicker.js')}}"></script>
-     <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
-  <script type="text/javascript" src="{{asset('public/js/script.js')}}"></script>
-  <script type="text/javascript">
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{__('messages.site_name')}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://getuikit.com/assets/uikit/dist/css/uikit.css?nc=6851">
+        @if($setting->is_rtl==0)
+         <link rel="stylesheet" type="text/css" href="{{asset('design/css/style.css?v=123')}}">
+        @else
+         <link rel="stylesheet" type="text/css" href="{{asset('design/css/rtl.css?v=596061')}}">
+        @endif
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="{{__('messages.site_name')}}"/>
+        <meta property="og:title" content="{{__('messages.site_name')}}"/>
+        <meta property="og:image" content="{{asset('favicon.png')}}"/>
+        <meta property="og:image:width" content="250px"/>
+        <meta property="og:image:height" content="250px"/>
+        <meta property="og:site_name" content="{{__('messages.site_name')}}"/>
+        <meta property="og:description" content="{{__('messages.metadescweb')}}"/>
+        <meta property="og:keyword" content="{{__('messages.metakeyboard')}}"/>
+        <link rel="shortcut icon" href="{{asset('upload/favicon1.ico')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('design/fonts/HoboStd.otf')}}">
+        <input type="hidden" id="loginuser" value="{{Session::get('login_user')}}">
+        <script type="text/javascript" src="{{asset('design/js/bootstrap.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('design/css/app.css')}}"/>
+
+        <link rel="stylesheet" href="{{asset('design/css/font.css')}}">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('design/css/bootstrap.min.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{asset('design/js/dropdown.js')}}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
+        <script type="text/javascript" src=""></script>
+        <script type="text/javascript" src="{{asset('design/js/jquery.mixitup.min.js?v=1')}}"></script>
+        <script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyC1JUHjsnQZtKx5eBOpG42E_CLoJ1s39AU&sensor=false&libraries=places'></script>
+        <script src="{{url('js/locationpicker.js')}}"></script>
+        <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+        <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+        <script type="text/javascript">
         Pusher.logToConsole = true;
 
     var pusher = new Pusher('ac3d1d9f6d31d556dcd8', {
@@ -70,9 +68,41 @@
         }
     });
       </script>
+      
+      <script>
+          $(document).ready(function() {
+	
+        	// Will wait for everything on the page to load.
+        	$(window).bind('load', function() {
+        		$('.custom-loader, body').addClass('loaded');
+        		setTimeout(function() {
+        			$('.custom-loader').css({'display':'none'})
+        		}, 2000)
+        	});
+        	
+        	// Will remove overlay after 1min for users cannnot load properly.
+        	setTimeout(function() {
+        		$('.custom-loader, body').addClass('loaded');
+        	}, 60000);
+        })
+      </script>
    </head>
+   <style>
+       button.filter.tab-b.active {
+        border: 3px solid #e00b2b;
+    }
+   </style>
    
    <body class="rtl">
+    
+    <div class="custom-loader">
+        <div class="window-loader" id="window-loader">
+    		<div class="item"></div>
+    		<div class="item"></div>
+    		<div class="item"></div>
+    		<div class="item"></div>
+    	</div>
+    </div>
       
       @include('cookieConsent::index')
       @include('user.cssclass')
@@ -250,7 +280,7 @@
                               <div class="b-img">
                                  @foreach($allmenu as $ai)  
                                  @if($item->name==$ai->menu_name)
-                                 <img src="{{asset('public/upload/images/menu_item_icon/'.$ai->menu_image)}}" class="cartth"> 
+                                 <img src="{{asset('upload/images/menu_item_icon/'.$ai->menu_image)}}" class="cartth"> 
                                  @endif
                                  @endforeach
                               </div>
@@ -269,7 +299,7 @@
                                  </h2>
                                  <p>{{$item->quantity}}
                                     <img src="{{asset('design/images/cross.png')}}" style="width: 10px !important;height: 10px !important;">
-                                    {{Session::get("usercurrency").number_format($item->price, 2, '.', '')}}
+                                    {{$curreny.number_format($item->price, 2, '.', '')}}
                                  </p>
                                 
                               </div>
@@ -280,7 +310,7 @@
                                  </i>
                                  </a>
                                  <h1>
-                                    {{Session::get("usercurrency")}}{{number_format($totalamount, 2, '.', '')}}
+                                    {{$curreny}}{{number_format($totalamount, 2, '.', '')}}
                                  </h1>
                               </span>
                            </div>
@@ -290,10 +320,10 @@
                      <div class="total">
                         <h1>{{__('messages.subtotal')}} :</h1>
                         <span>
-                        {{Session::get("usercurrency").number_format(Cart::getTotal(), 2, '.', '')}} 
+                        {{$curreny.number_format(Cart::getTotal(), 2, '.', '')}} 
                         </span>
                      </div>
-                     <?php if(Session::get("orderstatus")==1){ ?>
+                     <?php if($setting->order_status==1){ ?>
                      <div class="viewcart">
                         <h1>
                            <a href="{{url('cartdetails')}}" class="viewcarta">
@@ -302,7 +332,7 @@
                         </h1>
                      </div>
                      <?php }?>
-                     <?php if(Session::get("orderstatus")==0){ ?>
+                     <?php if($setting->order_status==0){ ?>
                      <div class="last-box">
                         <div class="Delivery">
                            <img src="{{asset('design/images/delivery.png')}}" style="width:50px">
@@ -326,7 +356,7 @@
             <div class="row">
                <div class="kb-nav-logo">
                   <a href="{{url('/')}}">
-                  <img src="{{Session::get('logo')}}" class="img-fluid">
+                  <img src="{{asset('upload/web/').'/'.$setting->logo}}" class="img-fluid">
                   </a>
                </div>
                <div class="kb-menu">
@@ -379,9 +409,9 @@
                      <input type="hidden" id="carttotal" value="{{$carttotal}}">
                      </i></a>
                   </div>
-                  <a href="{{ Session::get('facebook')}}"  target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                  <a href="{{ Session::get('twitter')}}"  target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href="{{ Session::get('whatsapp')}}"  target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                  <a href="{{$setting->facebook_id}}"  target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  <a href="{{$setting->twitter_id}}"  target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="{{$setting->whatsapp}}"  target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                </div>
                <div class="tm">
                   <div id="toggle" onclick="changetab()">
@@ -413,10 +443,10 @@
             <div class="col-md-12">
                <div class="row">
                   <div class="col-md-6 about-img">
-                     <img src="{{Session::get('second_sec_img')}}" class="img-fluid">
+                     <img src="{{asset('upload/web/').'/'.$setting->second_sec_img}}" class="img-fluid">
                   </div>
                   <div class="col-md-6 about-text">
-                     <img src="{{Session::get('secong_icon_img')}}" class="img-fluid">
+                     <img src="{{asset('upload/web/').'/'.$setting->secong_icon_img}}" class="img-fluid">
                      <h5>{{__('messages.silder23')}}
                      </h5>
                      <p>
@@ -431,40 +461,45 @@
          <h1>{{__('messages.menu_title')}}</h1>
       </div>
       <div class="main-box">
-         <div class="container">
-            <div class="slider responsive topslider">
-               @foreach($category as $ca)
-               <div>
-                 <button type="button" class="filter active tab-b" data-filter=".{{$ca->id}}">
-                     <?php $img=asset('public/upload/images/menu_cat_icon/').'/'.$ca->cat_icon; ?>
-                     <div class="category_img_sb">
-                        <div class="img-1 coman" style="background-image: url('{{$img}}');"></div>
-                     </div>
-                     <h1>{{$ca->cat_name}}</h1>
-                  </button>
-               </div>
-               @endforeach
+		<div class="container">
+			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+                <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m uk-grid">
+                    	@foreach($category as $ca)
+                    <li>
+                        <div class="uk-panel">
+                            <button type="button" class="filter active tab-b" data-filter=".{{$ca->id}}">
+                                <?php $img=asset('upload/images/menu_cat_icon/').'/'.$ca->cat_icon; ?>
+                                 <div class="category_img_sb">
+                                    <div class="img-1 coman" style="background-image: url('{{$img}}');"></div>
+                                 </div>
+                                 <h1>{{$ca->cat_name}}</h1>
+                                    <div class="uk-position-center uk-panel"></div>
+                                
+                            </button>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+                <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
             </div>
-         </div>
-         <div class="prev">
-            <span class="fa fa-chevron-left" aria-hidden="true"></span>
-         </div>
-         <div class="next">
-            <span class="fa fa-chevron-right" aria-hidden="true"></span>
-         </div>
-      </div>
+			
+		</div>
+	</div>
       <div class="container">
          <div class="">
            <div id="portfoliolist">
                 <?php 
-                        for($i=0;$i<count($items);$i++){
-                             echo "<div class='row'>";
-                             if(isset($items[$i])){ ?>
+                        for($i=0;$i<count($items);$i++){ ?>
+                           @foreach($category as $ca)
+                             <?php echo "<div class='row'>";
+                             
+                             if(isset($items[$i])&&$ca->id==$items[$i]->category){ ?>
                                    <div class="portfolio {{$items[$i]->categoryitem->id}} burger w3-animate-zoom" data-cat="{{$items[$i]->categoryitem->id}}" style="display-block">
                                       <div class="items">
                                           <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
                                          <div class="b-img">
-                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
+                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
                                          </div>
                                          <div class="bor">
                                             <div class="b-text">
@@ -473,13 +508,13 @@
                                                   {{substr($items[$i]->description,0,75)}}
                                                </p>
                                                <div class="size_main_sb">
-                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}')" id="s{{$i}}">S</a>
-                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}')" class="active" id="m{{$i}}">M</a>
-                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}')" id="l{{$i}}">L</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}','s')" id="s{{$i}}s" class="sizename{{$i}}s">S</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}','s')" class="active sizename{{$i}}s" id="m{{$i}}s">M</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}','s')" id="l{{$i}}s" class="sizename{{$i}}s">L</a>
                                                </div>
                                             </div>
                                             <div class="price">
-                                               <h1>{{Session::get("usercurrency")}} <span id="priceitem{{$i}}">{{$items[$i]->medium_price}}</span></h1>
+                                               <h1>{{$curreny}}<span id="priceitem{{$i}}s">{{$items[$i]->medium_price}}</span></h1>
                                                <div class="cart">
                                                   <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
                                                </div>
@@ -489,12 +524,12 @@
                                    </div>
                                 
                              <?php $i=$i+1;}
-                             if(isset($items[$i])){ ?>
+                             if(isset($items[$i])&&$ca->id==$items[$i]->category){ ?>
                                    <div class="portfolio {{$items[$i]->categoryitem->id}} burger w3-animate-zoom" data-cat="{{$items[$i]->categoryitem->id}}">
                                       <div class="items">
                                           <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
                                          <div class="b-img">
-                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
+                                            <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')"><img src="{{asset('upload/images/menu_item_icon/'.$items[$i]->menu_image)}}"></a>
                                          </div>
                                          <div class="bor">
                                             <div class="b-text">
@@ -503,13 +538,13 @@
                                                   {{substr($items[$i]->description,0,75)}}
                                                </p>
                                                <div class="size_main_sb">
-                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}')" id="s{{$i}}">S</a>
-                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}')" class="active" id="m{{$i}}">M</a>
-                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}')" id="l{{$i}}">L</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'s',{{$items[$i]->id}},'{{$items[$i]->small_price}}','s')" id="s{{$i}}s" class="sizename{{$i}}s">S</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'m',{{$items[$i]->id}},'{{$items[$i]->medium_price}}','s')" class="active sizename{{$i}}s" id="m{{$i}}s" >M</a>
+                                                  <a href="javascript:changepriceqty({{$i}},'l',{{$items[$i]->id}},'{{$items[$i]->large_price}}','s')" id="l{{$i}}s" class="sizename{{$i}}s">L</a>
                                                </div>
                                             </div>
                                             <div class="price">
-                                               <h1>{{Session::get("usercurrency")}} <span id="priceitem{{$i}}">{{$items[$i]->medium_price}}</span></h1>
+                                               <h1>{{$curreny}}<span id="priceitem{{$i}}s">{{$items[$i]->medium_price}}</span></h1>
                                                <div class="cart">
                                                   <a href="javascript:gotodetail('{{$items[$i]->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
                                                </div>
@@ -519,40 +554,11 @@
                                    </div>
                                  
                              <?php } 
-                             echo "</div>";
+                             echo "</div>"; ?>
+                             @endforeach
+                             <?php
                         } ?>
                         </div>
-                      
-              <!-- @foreach($items as $it)
-               <div class="portfolio {{$it->categoryitem->id}} col-md-6 burger" data-cat="{{$it->categoryitem->id}}">
-                  <div class="items">
-                      <input type="hidden" name="selsize{{$i}}" id="selsize{{$i}}" value="m" />
-                     <div class="b-img">
-                        <a href="javascript:gotodetail('{{$it->id}}','{{$i}}')"><img src="{{asset('public/upload/images/menu_item_icon/'.$it->menu_image)}}"></a>
-                     </div>
-                     <div class="bor">
-                        <div class="b-text">
-                           <h1><a href="javascript:gotodetail('{{$it->id}}','{{$i}}')">{{$it->menu_name}}</a></h1>
-                           <p>
-                              {{substr($it->description,0,75)}}
-                           </p>
-                           <div class="size_main_sb">
-                              <a href="javascript:changepriceqty({{$i}},'s',{{$it->id}})" id="s{{$i}}">S</a>
-                              <a href="javascript:changepriceqty({{$i}},'m',{{$it->id}})" class="active" id="m{{$i}}">M</a>
-                              <a href="javascript:changepriceqty({{$i}},'l',{{$it->id}})" id="l{{$i}}">L</a>
-                           </div>
-                        </div>
-                        <div class="price">
-                           <h1>{{Session::get("usercurrency")}} <span id="priceitem{{$i}}">{{$it->medium_price}}</span></h1>
-                           <div class="cart">
-                              <a href="javascript:gotodetail('{{$it->id}}','{{$i}}')">{{__('messages.addcart')}}</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <?php //$i++;?>
-               @endforeach-->
             </div>
          </div>
       </div>
@@ -562,7 +568,7 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="play-b">
-                     <img src="{{Session::get('footer_up_img')}}">
+                     <img src="{{asset('upload/web/').'/'.$setting->footer_up_img}}">
                   </div>
                </div>
                <div class="col-md-6 text-box">
@@ -600,12 +606,12 @@
                   <div class="row">
                       @if($setting->have_playstore=='1')
                      <div class="col-md-5 col-sm-5 col-5 google">
-                        <a href="{{ Session::get('playstore')}}" target="_blank"><img src="{{asset('design/images/Google-Play-icon.png')}}" class="img-fluid"></a>
+                        <a href="{{$setting->play_store_url}}" target="_blank"><img src="{{asset('design/images/Google-Play-icon.png')}}" class="img-fluid"></a>
                      </div>
                      @endif
                      @if($setting->have_appstore=='1')
                      <div class="col-md-5 col-sm-5 col-5 apple">
-                        <a href="{{ Session::get('appstore')}}" target="_blank"><img src="{{asset('design/images/App-Store-icon.png')}}" class="img-fluid"></a>
+                        <a href="{{$setting->app_store_url}}" target="_blank"><img src="{{asset('design/images/App-Store-icon.png')}}" class="img-fluid"></a>
                      </div>
                      @endif
                   </div>
@@ -618,14 +624,14 @@
             <div class="container kb-footer">
                <div class="row">
                   <div class="col-md-3 about">
-                     <img src="{{Session::get('logo')}}">
+                     <img src="{{asset('upload/web/').'/'.$setting->logo}}">
                      <p>{{__('messages.footer_text')}}</p>
                      <div class="footer-social">
-                        <a href="{{ Session::get('facebook')}}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="{{ Session::get('twitter')}}"  target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="{{ Session::get('linkedin')}}" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="{{ Session::get('google_plus_id')}}" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                        <a href="{{ Session::get('whatsapp')}}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="{{$setting->facebook_id}}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="{{$setting->twitter_id}}"  target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="{{$setting->linkedin_id}}" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="{{$setting->google_plus_id}}" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="{{$setting->whatsapp}}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                      </div>
                   </div>
                   <div class="col-md-3 info">
@@ -669,19 +675,19 @@
                         <img src="{{asset('design/images/location.png')}}">
                      </div>
                      <span>
-                     {{Session::get('address')}}
+                     {{$setting->address}}
                      </span>
                      <div class="f-location">
                         <img src="{{asset('design/images/phone.png')}}">
                      </div>
                      <span>
-                     {{Session::get('phone')}}
+                     {{$setting->phone}}
                      </span>
                      <div class="f-location">
                         <img src="{{asset('design/images/email.png')}}">
                      </div>
                      <span>
-                     {{Session::get('email')}}
+                     {{$setting->email}}
                      </span>
                   </div>
                </div>
@@ -690,7 +696,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-6">
-                        <h1>{{__('messages.copyright')}} © {{Session::get('current_year')}} {{__('messages.site_name')}}. {{__('messages.f1')}}.</h1>
+                        <h1>{{__('messages.copyright')}} © {{date('Y')}} {{__('messages.site_name')}}. {{__('messages.f1')}}.</h1>
                      </div>
                      <div class="col-md-6 v-box">
                         <div class="v-img">
@@ -735,7 +741,7 @@
    <div class="notification">
         <section class="logo">
             <div id="face" >
-                <img id="notificationimg" src="{{asset('public/upload/profile/my-account-pro.png')}}" style="height: 50px;width: 50px;">
+                <img id="notificationimg" src="{{asset('upload/profile/my-account-pro.png')}}" style="height: 50px;width: 50px;">
             </div>
         </section>
         <section class="body">
@@ -743,7 +749,7 @@
             <p class="message" style="height:80%">Your change was made</p>
         </section>
     </div>
-   <input type="hidden" id="currency" value='{{Session::get("usercurrency")}}' />
+   <input type="hidden" id="currency" value='{{$curreny}}' />
    <input type="hidden" id="addcart" value='{{__("messages.addcart")}}' />
    <input type="hidden" id="path_site" value="{{url('/')}}" />
    <input type="hidden" id="forgot_error" value="{{__('messages.forgot_error')}}"/>
@@ -754,5 +760,15 @@
    <input type="hidden" id="login_error" value="{{__('messages.login_error')}}" />
    <input type="hidden" id="forgot_error_2" value="{{__('messages.forgot_error_2')}}">
   
-   <script type="text/javascript" src="{{ URL::to('public/js/code.js?v=14000')}}"></script>
+  
+  
+  
+  <script src="https://getuikit.com/assets/uikit/dist/js/uikit.js?nc=6851"></script>
+    <script src="https://getuikit.com/assets/uikit/dist/js/uikit-icons.js?nc=6851"></script>
+  
+  
+  
+  
+  
+   <script type="text/javascript" src="{{ URL::to('js/code.js?v=ewrerw')}}"></script>
 </html>

@@ -49,7 +49,13 @@ class NotificationController extends Controller {
      
     }
     public function updatekeydata(Request $request){
-        $key=$request->get("key");
+        $key=trim($request->get("key"));
+        $serverkey=trim($request->get("serverkey"));
+        if(empty($serverkey)){
+             Session::flash('message',__('messages.required_field')); 
+             Session::flash('alert-class', 'alert-success');
+             return redirect("updatekey/".$key);
+        }
         $data=Notiy_key::find(1);
         if($key==1){
             $data->android_key=$request->get("serverkey");

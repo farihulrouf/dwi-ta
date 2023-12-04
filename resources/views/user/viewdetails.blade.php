@@ -144,7 +144,7 @@
                <div class="order-item">
                   <div class="main-order-detail">
                      <h1>{{$order->order_placed_date}}</h1>
-                     <span>{{Session::get("usercurrency")}} {{$order->total_price}}</span>
+                     <span>{{$curreny}} {{$order->total_price}}</span>
                      <p>{{count($itemlist)}} {{__('messages.item_order')}}</p>
                      <p>{{$order->address}}</p>
                      <p>{{$order->phone_no}}</p>
@@ -171,8 +171,8 @@
                               </p>
                            </div>
                            <span>
-                              {{Session::get("usercurrency")}}{{$item->ItemTotalPrice}}
-                              <h1>{{Session::get("usercurrency")}}   	         		{{$item->item_amt}}<img src="{{asset('design/images/cross-1.png')}}">{{$item->item_qty}}</h1>
+                              {{$curreny}}{{$item->ItemTotalPrice}}
+                              <h1>{{$curreny}}   	         		{{$item->item_amt}}<img src="{{asset('design/images/cross-1.png')}}">{{$item->item_qty}}</h1>
                            </span>
                         </div>
                      </div>
@@ -216,17 +216,17 @@
                   <div class="order-sub-total">
                      <div class="sub-total-start">
                         <h1>{{__('messages.subtotal')}}:</h1>
-                        <span>{{Session::get("usercurrency")}} {{number_format($order->subtotal, 2, '.', '')}}</span>
+                        <span>{{$curreny}} {{number_format($order->subtotal, 2, '.', '')}}</span>
                      </div>
                      <?php if($order->delivery_mode==0){?>
                      <div class="sub-total-start">
                         <h1>{{__('messages.DC')}} :</h1>
-                        <span>{{Session::get("usercurrency")}} {{number_format($order->delivery_charges, 2, '.', '')}}</span>
+                        <span>{{$curreny}} {{number_format($order->delivery_charges, 2, '.', '')}}</span>
                      </div>
                      <?php }?>
                      <div class="final-total">
                         <h1>{{__('messages.total')}} :</h1>
-                        <span>{{Session::get("usercurrency")}} {{$order->total_price}}</span>
+                        <span>{{$curreny}} {{$order->total_price}}</span>
                      </div>
                   </div>
                </div>
